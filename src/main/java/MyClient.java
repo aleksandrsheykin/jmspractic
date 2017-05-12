@@ -3,7 +3,7 @@ import java.util.Scanner;
 /**
  * Created by admin on 12.05.2017.
  */
-public class Main {
+public class MyClient {
 
     public static void main(String[] args) {
         Thread client = new Thread(new Runnable() {
@@ -17,25 +17,12 @@ public class Main {
                     if (msg.equals("exit"))
                         System.exit(0);
 
-                    System.out.println("Client1 sending: "+msg);
+                    System.out.println("Client2 sending: "+msg);
                     myMessageProvider.sendMessage(msg);
                 }
             }
         });
 
-        Thread server = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                MyMessageConsumer myMessageConsumer = new MyMessageConsumer();
-
-                while (true) {
-                    myMessageConsumer.receiveMessage();
-                }
-            }
-        });
-
-        server.start();
         client.start();
     }
-
 }
